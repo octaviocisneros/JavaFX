@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.deploy.util.StringUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,14 +30,18 @@ public class Controller implements Initializable {
 
     public void addcontact() {
         //System.out.println("addItem");
-        contacts.add(new Contact(text.getText(), text1.getText(), text2.getText()));
-        text.setText("");
-
+        if (text.getText().equals("") || text1.getText().equals("") || text2.getText().equals("")) {
+            return;
+        } else {
+            contacts.add(new Contact(text.getText(), text1.getText(), text2.getText()));
+            text.setText("");
+            text1.setText("");
+            text2.setText("");
+        }
 //        if(Contact.equals(""))
 //        {
 //            addcontact().disable();
 //        }
-
 
 
 //        if ((contacts.getText(null) != null && !contacts.getText().isEmpty())) {
@@ -47,11 +52,14 @@ public class Controller implements Initializable {
     }
 
 
-    public void addname(){}
+    public void addname() {
+    }
 
-    public void addphone(){}
+    public void addphone() {
+    }
 
-    public void addemail(){}
+    public void addemail() {
+    }
 
 //    public void addname() {
 //        contacts.add( new Contact(text.getText()));
@@ -68,7 +76,6 @@ public class Controller implements Initializable {
 //    }
 
 
-
     public void removecontact() {
         // System.out.println("removeItem");
         Contact contact = (Contact) list.getSelectionModel().getSelectedItem();
@@ -77,6 +84,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        list.setItems(contacts); }
+        list.setItems(contacts);
+    }
 
 }
